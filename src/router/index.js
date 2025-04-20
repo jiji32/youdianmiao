@@ -5,7 +5,14 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/home",
+      redirect: "/first",
+    },
+    {
+      path: "/first",
+      component: () => import("../views/first.vue"),
+      meta: {
+        hideTabBar: true, // 是否隐藏首页的tabbar; 默认为 false
+      }
     },
     {
       path: "/home",

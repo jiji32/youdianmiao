@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <van-nav-bar title="游点妙 ❀Trip" left-text="返回" left-arrow></van-nav-bar>
+    <van-nav-bar title="游点妙 ❀Trip" left-text="返回" left-arrow @click-left="handleBack"></van-nav-bar>
     <el-carousel :interval="2000" type="card" height="200px">
       <el-carousel-item v-for="(img, index) in imgs" :key="index">
     <!-- 直接绑定图片路径 -->
@@ -40,6 +40,12 @@ import {
   getHomeHouselist,
 } from "@/service";
 import useScroll from "@/hooks/useScroll";
+const handleBack =()=> {
+      // 使用 history.back() 返回上一页
+      history.back();
+      // 使用 Vue Router 返回上一页
+      // this.$router.back();
+}
 const imgs = ref([
   "src/assets/img/home/banner.webp",  
   "src/assets/img/home/lunbo.webp",

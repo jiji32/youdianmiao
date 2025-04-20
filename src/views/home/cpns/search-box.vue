@@ -1,9 +1,9 @@
 <template>
   <div class="serach-box">
     <div class="item location bottom-gray-line">
-      <div class="city" @click="cityItemClick">{{ cityStore.currentCity.cityName }}</div>
-      <div class="current">
-        <span class="mine">我的位置</span>
+      <div class="city" >{{ cityStore.currentCity.cityName }}</div>
+      <div class="current" @click="cityItemClick">
+        <span class="mine" >我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="" />
       </div>
     </div>
