@@ -119,7 +119,9 @@ onMounted(() => {
 body   {
     height: 2200px;
     background: linear-gradient(to bottom, #000000, #3f603b)!important;
+
 }
+
 
 .container {
     width: 100%;

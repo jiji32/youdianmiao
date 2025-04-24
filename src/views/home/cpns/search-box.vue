@@ -7,19 +7,21 @@
         <img src="@/assets/img/home/icon_location.png" alt="" />
       </div>
     </div>
-    <div class="item date-range bottom-gray-line">
-      <div class="start">
+    <div class="item date-range bottom-gray-line" >
+      <div class="start" @click="showCalendar = true">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time"> 8月25日 </span>
+          <span class="time"> {{ startDate }} </span>
         </div>
-        <div class="stay">共一晚</div>
+        <div class="stay" @click="showCalendar = true">共{{ duringDay }}晚</div>
       </div>
-      <div class="end">
+      <div class="end" @click="showCalendar = true">
         <div class="date">
           <span class="tip">离店</span>
-          <span class="time"> 8月26日 </span>
+          <span class="time">{{ endDate }}</span>
         </div>
+      </div>
+        <van-calendar v-model:show="showCalendar" type="range" :round="false" @confirm="onConfirm" /> 
       </div>
     </div>
     <div class="item price-counter bottom-gray-line">
@@ -36,12 +38,15 @@
     <div class="item search-btn">
       <div class="btn" @click="startSearch">开始搜索</div>
     </div>
-  </div>
 </template>
 
 <script setup>
 import useCityStore from "@/store/modules/city";
 import { useRouter } from "vue-router";
+import {ref} from "vue";
+import { formatMonthDay } from "@/utils/format_date";
+import { getDiffDuration } from "@/utils/format_date";
+
 defineProps({
   hotSuggests: {
     type: Object,
@@ -66,9 +71,26 @@ const cityItemClick = () => {
     path: "/city"
   })
 }
+const nowDate = new Date()
+const startDate = ref(formatMonthDay(nowDate))
+const newDate = new Date().setDate(nowDate.getDate() + 1)
+const endDate = ref(formatMonthDay(newDate ))
+const showCalendar = ref(false)
+const onConfirm = (val) => {
+  const selectStartDate = val[0]
+  const selectEndDate = val[1]
+  startDate.value = formatMonthDay(selectStartDate)
+  endDate.value = formatMonthDay(selectEndDate)
+  duringDay.value = getDiffDuration(selectStartDate, selectEndDate)
+  showCalendar.value = false
+}
+const duringDay = ref(getDiffDuration(nowDate, newDate))
 </script>
 
 <style lang="less" scoped>
+.serach-box {
+  --van-calendar-popup-height: 100%;
+}
 .location {
   height: 44px;
   .city {
