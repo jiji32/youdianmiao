@@ -146,7 +146,7 @@ const duringDay = ref(getDiffDuration(nowDate, newDate))
     margin: 3px;
     border-radius: 14px;
     color: #3f4954;
-    background-color: #f1f3f5;
+    background-color: #ccd5ae;
   }
 }
 

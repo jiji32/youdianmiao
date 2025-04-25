@@ -3,12 +3,12 @@
     <van-nav-bar title="游点妙 ❀Trip" left-text="返回" left-arrow @click-left="handleBack"></van-nav-bar>
     <el-carousel :interval="2000" type="card" height="200px">
       <el-carousel-item v-for="(img, index) in imgs" :key="index">
-    <!-- 直接绑定图片路径 -->
       <img :src="img" alt="" class="carousel-image" />
     </el-carousel-item>
     </el-carousel>
 
     <search-box :hot-suggests="hotSuggests" />
+    
     <div class="content">
       <category-list :categories="categories" />
       <house-area :houselist="houselist" />
